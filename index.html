@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="SpatialMed: A Benchmark for Evaluating 3D Spatial Reasoning in Medical Multimodal Large Language Models">
+  <meta name="keywords" content="SpatialMed, Medical AI, Spatial Reasoning, MLLM, CT, 3D, Benchmark">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpatialMed</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Beyond Medical Diagnostics: <br>How Medical Multimodal Large Language Models Think in Space</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://huyquoctrinh.onrender.com/">Quoc-Huy Trinh</a><sup>*1</sup>,</span>
+            <span class="author-block">
+              Xi Ding<sup>*2</sup>,</span>
+            <span class="author-block">
+              Yang Liu<sup>*2</sup>,</span>
+            <span class="author-block">
+              Zhenyue Qin<sup>3</sup>,</span>
+            <span class="author-block">
+              Xingjian Li<sup>2</sup>,</span>
+            <span class="author-block">
+              Gorkem Durak<sup>4</sup>,</span>
+            <span class="author-block">
+              Halil Ertugrul Aktas<sup>4</sup>,</span>
+            <span class="author-block">
+              Elif Keles<sup>4</sup>,</span>
+            <span class="author-block">
+              Ulas Bagci<sup>+4</sup>,</span>
+            <span class="author-block">
+              Min Xu<sup>+2</sup></span>
+          </div>
+
+          <div class="is-size-6 publication-authors" style="margin-top: 0.5rem;">
+            <span class="author-block"><sup>*</sup>Equal contribution</span> &nbsp;&nbsp;
+            <span class="author-block"><sup>+</sup>Co Advisor</span>
+          </div>
+
+          <div class="is-size-5 publication-authors" style="margin-top: 0.75rem; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1.5rem;">
+            <span class="author-block" style="display: inline-flex; align-items: center; gap: 0.3rem;">
+              <sup>1</sup><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Aalto_University_logo.svg" alt="Aalto" style="height: 22px; vertical-align: middle;"> Aalto University
+            </span>
+            <span class="author-block" style="display: inline-flex; align-items: center; gap: 0.3rem;">
+              <sup>2</sup><img src="https://upload.wikimedia.org/wikipedia/en/b/bb/Carnegie_Mellon_University_seal.svg" alt="CMU" style="height: 22px; vertical-align: middle;"> Carnegie Mellon University
+            </span>
+          </div>
+          <div class="is-size-5 publication-authors" style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1.5rem; margin-top: 0.3rem;">
+            <span class="author-block" style="display: inline-flex; align-items: center; gap: 0.3rem;">
+              <sup>3</sup><img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Yale_University_Shield_1.svg" alt="Yale" style="height: 22px; vertical-align: middle;"> Yale University
+            </span>
+            <span class="author-block" style="display: inline-flex; align-items: center; gap: 0.3rem;">
+              <sup>4</sup><img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Northwestern_University_seal.svg" alt="Northwestern" style="height: 22px; vertical-align: middle;"> Northwestern University
+            </span>
+          </div>
+
+          <!-- <div><h2 class="subtitle" style="margin-top: 0.75rem;">
+            <a style="color:#1B427D;"><b>ICML 2026</b></a>
+          </h2></div> -->
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- arXiv Link -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2603.13800"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark" style="opacity: 0.6; pointer-events: none;">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                </a>
+              </span>
+              <!-- Dataset Link -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/huyquoctrinh/SpatialMed"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Dataset</span>
+                </a>
+              </span>
+              <!-- PDF Link -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2603.13800"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Banner -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="stats-banner">
+        <div class="stat-item">
+          <span class="stat-number">9,782</span>
+          <span class="stat-label">QA Pairs</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">2,375</span>
+          <span class="stat-label">CT Scans</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">117</span>
+          <span class="stat-label">Anatomical Structures</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">14</span>
+          <span class="stat-label">MLLMs Evaluated</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">6</span>
+          <span class="stat-label">Spatial Tasks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser -->
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <center>
+        <img src="./static/images/visualize_3d.png" width="850" alt="3D CT visualization with spatial reasoning tasks">
+        <h2 style="margin-top:0.5rem;">
+          3D CT visualizations showing spatial reasoning tasks: directional, distance, volume, and comparative reasoning across organs and tumors.
+        </h2>
+      </center>
+
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+
+          <!-- Abstract -->
+          <hr>
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Visual spatial intelligence is critical for medical image interpretation, yet remains largely unexplored in Multimodal Large Language Models (MLLMs) for 3D imaging. This gap persists due to a systemic lack of datasets featuring structured 3D spatial annotations beyond basic labels. In this study, we introduce an <b>agentic pipeline</b> that autonomously synthesizes spatial visual question-answering (VQA) data by orchestrating computational tools such as volume and distance calculators with multi-agent collaboration and expert radiologist validation. We present <b>SpatialMed</b>, the first comprehensive benchmark for evaluating 3D spatial intelligence in medical MLLMs, comprising nearly <b>10K question-answer pairs</b> across multiple organs and tumor types. Our evaluations on <b>14 state-of-the-art MLLMs</b> and extensive analyses reveal that current models lack robust spatial reasoning capabilities for medical imaging.
+            </p>
+          </div>
+
+          <!-- Data Pipeline -->
+          <hr>
+          <h2 class="title is-3">Agentic Data Pipeline</h2>
+          <div class="content has-text-justified">
+            <p>
+              Our pipeline automatically generates clinically meaningful spatial VQA data through a multi-stage process:
+              <b>(1) Spatial Computational Tools</b> &mdash; volume calculators, 3D bounding box extractors, and distance calculators derive precise spatial information from CT segmentation masks;
+              <b>(2) QA Generation</b> &mdash; using Qwen-2.5 with retrieval-augmented generation (RAG) from PubMed;
+              <b>(3) Multi-Agent Validation</b> &mdash; clinical validation agent + 3 medical specialist agents filter trivial and low-quality samples;
+              <b>(4) Expert Radiologist Review</b> &mdash; 3 board-certified radiologists independently validate all QA pairs.
+            </p>
+            <center>
+              <img src="./static/images/data_pipeline.png" width="1200" alt="SpatialMed agentic data pipeline"/>
+              <figcaption>Overview of the SpatialMed agentic data synthesis pipeline: from spatial computation to multi-agent validation and expert radiologist review.</figcaption>
+            </center>
+          </div>
+
+          <!-- Dataset -->
+          <hr>
+          <h2 class="title is-3">SpatialMed Benchmark</h2>
+          <div class="content has-text-justified">
+            <p>
+              SpatialMed spans <b>6 spatial reasoning tasks</b> organized into multiple-choice questions (MCA) and direct volumetric estimation:
+            </p>
+            <ul>
+              <li><b>DIR</b> &mdash; Directional Reasoning (superior/inferior, anterior/posterior, left/right)</li>
+              <li><b>DIST</b> &mdash; Distance Reasoning (center-to-center distances, closest/farthest relationships)</li>
+              <li><b>EXT</b> &mdash; Extent/Size/Shape Reasoning (bounding boxes, axis extent, width/height/depth)</li>
+              <li><b>VOL</b> &mdash; Volume Magnitude Reasoning (numeric values, intervals, threshold decisions)</li>
+              <li><b>COMP</b> &mdash; Comparative Reasoning (pairwise comparison, ranking largest/smallest)</li>
+              <li><b>Volume Estimation</b> &mdash; Absolute volume, volume ratios, cross-case comparisons</li>
+            </ul>
+
+            <div class="image-grid">
+              <figure>
+                <img src="./static/images/donut_chart.png" alt="Anatomical distribution">
+                <figcaption>Distribution of anatomical structures in SpatialMed.</figcaption>
+              </figure>
+              <figure>
+                <img src="./static/images/dataset_volume_log2_bar.png" alt="Volume distribution">
+                <figcaption>Volume distribution (log2 scale) across the dataset.</figcaption>
+              </figure>
+            </div>
+
+            <center style="margin-top:1.5rem;">
+              <img src="./static/images/sample_visualization.png" width="900" alt="Sample visualization">
+              <figcaption>Sample CT visualizations with spatial QA annotations from SpatialMed.</figcaption>
+            </center>
+          </div>
+
+          <!-- Results -->
+          <hr>
+          <h2 class="title is-3">Results</h2>
+          <div class="content has-text-justified">
+            <p>
+              We evaluate <b>14 state-of-the-art MLLMs</b>: 6 general-domain 2D models, 6 medical-domain 2D models, and 2 3D models. Results reveal substantial gaps in spatial reasoning.
+            </p>
+
+            <table class="results-table">
+              <thead>
+                <tr>
+                  <th style="text-align:left">Method</th>
+                  <th>Size</th>
+                  <th>AVG</th>
+                  <th>DIR</th>
+                  <th>DIST</th>
+                  <th>EXT</th>
+                  <th>VOL</th>
+                  <th>COMP</th>
+                  <th>Volume Est.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background:#f9f9f9;">
+                  <td>Random</td><td>-</td><td>25.00</td><td>25.00</td><td>25.00</td><td>25.00</td><td>25.00</td><td>25.00</td><td>-</td>
+                </tr>
+                <tr><td colspan="9" class="section-header">2D Models (Non-medical Pretraining)</td></tr>
+                <tr>
+                  <td>LLaVA-Next (2024)</td><td>7B</td><td>40.80</td><td class="best">56.96</td><td>28.18</td><td class="best">47.82</td><td>44.68</td><td>45.81</td><td>21.35</td>
+                </tr>
+                <tr>
+                  <td>GLM-4.1V (2025)</td><td>9B</td><td>26.18</td><td>22.03</td><td>19.63</td><td>26.97</td><td>37.14</td><td>31.09</td><td>22.93</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>Qwen3-VL 4B (2025)</td><td>4B</td><td class="best">50.81</td><td>54.50</td><td>49.90</td><td>46.20</td><td>63.90</td><td class="best">56.20</td><td>34.14</td>
+                </tr>
+                <tr>
+                  <td>Qwen3-VL 8B (2025)</td><td>8B</td><td>44.04</td><td>34.59</td><td class="best">60.05</td><td>40.56</td><td>58.18</td><td>50.14</td><td>20.72</td>
+                </tr>
+                <tr>
+                  <td>InternVL3 8B (2025)</td><td>8B</td><td>42.83</td><td>43.26</td><td>46.07</td><td>26.38</td><td class="best">64.68</td><td>47.89</td><td>28.69</td>
+                </tr>
+                <tr>
+                  <td>InternVL3 9B (2025)</td><td>9B</td><td>47.87</td><td>51.48</td><td>56.00</td><td>37.35</td><td>50.39</td><td>56.12</td><td class="best">35.92</td>
+                </tr>
+
+                <tr><td colspan="9" class="section-header">2D Models (Medical Pretraining)</td></tr>
+                <tr>
+                  <td>MedFlamingo (2023)</td><td>9B</td><td>32.14</td><td>36.07</td><td>25.40</td><td>36.24</td><td>39.22</td><td>42.00</td><td>13.93</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>LLaVA-Med (2024)</td><td>7B</td><td class="best">46.38</td><td class="best">73.86</td><td class="best">31.29</td><td class="best">55.22</td><td>47.27</td><td>55.48</td><td>15.17</td>
+                </tr>
+                <tr>
+                  <td>HuatuoGPT-Vision (2024)</td><td>7B</td><td>1.34</td><td>1.60</td><td>1.04</td><td>1.76</td><td>2.08</td><td>1.56</td><td>NaN</td>
+                </tr>
+                <tr>
+                  <td>MedMoE (2024)</td><td>4B</td><td>15.84</td><td>22.15</td><td>5.08</td><td>23.77</td><td>11.95</td><td>15.64</td><td>16.45</td>
+                </tr>
+                <tr>
+                  <td>Med-VLM R1 (2025)</td><td>8B</td><td>6.30</td><td>5.14</td><td>6.58</td><td>4.45</td><td>11.95</td><td>9.67</td><td>NaN</td>
+                </tr>
+                <tr>
+                  <td>Med-Gemma 4B (2025)</td><td>4B</td><td>43.18</td><td>54.11</td><td>24.36</td><td>50.22</td><td class="best">47.53</td><td class="best">57.16</td><td class="best">25.69</td>
+                </tr>
+
+                <tr><td colspan="9" class="section-header">3D Models</td></tr>
+                <tr class="highlight-row">
+                  <td>Med-2E3 (2024)</td><td>3B</td><td class="best">38.60</td><td class="best">33.68</td><td class="best">30.25</td><td class="best">39.32</td><td class="best">50.65</td><td class="best">46.09</td><td class="best">31.58</td>
+                </tr>
+                <tr>
+                  <td>M3D (2024)</td><td>7B</td><td>8.86</td><td>0.11</td><td>0.00</td><td>31.10</td><td>1.04</td><td>12.07</td><td>NaN</td>
+                </tr>
+              </tbody>
+            </table>
+            <figcaption style="text-align:center;">Spatial Reasoning Benchmark: Comparison of 2D and 3D vision-language models on SpatialMed. Best results per category in <b>bold</b>. Green rows highlight top performers per group.</figcaption>
+          </div>
+
+          <!-- Key Findings -->
+          <div class="content has-text-justified" style="margin-top:2rem;">
+            <div class="key-findings">
+              <h4>Key Findings</h4>
+              <ul>
+                <li><b>Distance reasoning is the universal bottleneck</b> &mdash; even top models struggle with DIST reasoning tasks.</li>
+                <li><b>Medical pretraining does not help</b> &mdash; some medical models underperform general-domain models on spatial tasks.</li>
+                <li><b>Scale is non-monotonic</b> &mdash; Qwen3-VL 4B outperforms its 8B variant (50.81% vs 44.04%).</li>
+                <li><b>65% of reasoning chains are hallucinated</b> &mdash; models produce plausible but spatially incorrect explanations.</li>
+                <li><b>Numeric instability</b> &mdash; multiple models return NaN for volume estimation, indicating lack of numeric commitment.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Analysis Figures -->
+          <hr>
+          <h2 class="title is-3">Analysis</h2>
+          <div class="content">
+            <div class="image-grid">
+              <figure>
+                <img src="./static/images/organ_accuracy_heatmap.png" alt="Per-organ accuracy heatmap">
+                <figcaption>Per-organ model accuracy heatmap.</figcaption>
+              </figure>
+              <figure>
+                <img src="./static/images/faithfulness_matrix.png" alt="Reasoning faithfulness matrix">
+                <figcaption>Reasoning faithfulness analysis: faithful reasoning, decision errors, lucky guesses, and hallucinations.</figcaption>
+              </figure>
+              <figure>
+                <img src="./static/images/error_breakdown.png" alt="Error type breakdown">
+                <figcaption>Human-annotated error taxonomy: visual perception, linguistic, relational, and numeric reasoning errors.</figcaption>
+              </figure>
+              <figure>
+                <img src="./static/images/tumor_mca_radar.png" alt="Tumor-wise accuracy radar">
+                <figcaption>Tumor-wise MCA accuracy across models.</figcaption>
+              </figure>
+            </div>
+
+            <center style="margin-top:1.5rem;">
+              <img src="./static/images/volume_bucket_performance.png" width="600" alt="Volume-bucketed performance">
+              <figcaption>Model performance stratified by anatomical volume ranges.</figcaption>
+            </center>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Citation -->
+<section class="section is-light" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">Citation</h2>
+    <pre><code>@misc{trinh2026medicaldiagnosticsmedicalmultimodal,
+      title={Beyond Medical Diagnostics: How Medical Multimodal Large Language Models Think in Space}, 
+      author={Quoc-Huy Trinh and Xi Ding and Yang Liu and Zhenyue Qin and Xingjian Li and Gorkem Durak and Halil Ertugrul Aktas and Elif Keles and Ulas Bagci and Min Xu},
+      year={2026},
+      eprint={2603.13800},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2603.13800}, 
+}
+</code></pre>
+  </div>
+</section>
+
+<!-- Acknowledgments -->
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">Acknowledgments</h2>
+    <p>
+      This work was supported in part by U.S. NSF grants DBI-2238093, DBI-2422619, IIS-2211597, and MCB-2205148.
+    </p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="section" style="background-color:#f3f3f3; padding: 2rem 1.5rem;">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content" style="text-align:center;">
+          <p>
+            Website template adapted from <a href="https://nerfies.github.io/">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
